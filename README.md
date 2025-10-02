@@ -1,5 +1,5 @@
 # autodevto
-
+[![NPM Publish](https://github.com/royhodge812/autodevto/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/royhodge812/autodevto/actions/workflows/publish.yml)<br>
 A simple Node.js application to automatically generate & publish articles to your dev.to account. 
 
 ## Features
