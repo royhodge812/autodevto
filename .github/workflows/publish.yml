@@ -1,0 +1,46 @@
+name: NPM Publish
+
+# Triggers the workflow on a push to the main branch
+# only when the package.json version has been updated.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+
+# --- The crucial OIDC and permissions setup ---
+permissions:
+  id-token: write # Required to get the OIDC token for npm
+  contents: read  # Required to check out the code
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Node.js and configure the npm registry for OIDC authentication
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Use a current LTS version
+          registry-url: 'https://registry.npmjs.org'
+          # 'scope' is only needed if you're using a specific scope (e.g., @myorg)
+          # if your package is scoped, uncomment the line below:
+          # scope: '@your-scope-name'
+      
+      - name: Install dependencies
+        run: npm ci
+
+      # --- Optional: Add your build/test steps here ---
+      # For example, if you need to compile JavaScript:
+      # - name: Build package
+      #   run: npm run build
+
+      - name: Publish to npm
+        # The 'npm publish' command is now token-less and authenticated 
+        # securely via the OIDC mechanism you set up on npm.
+        run: npm publish
