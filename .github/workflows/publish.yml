@@ -31,3 +31,6 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --access public
+         env:
+    # This line securely pulls the token from GitHub Secrets
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
