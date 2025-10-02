@@ -1,6 +1,6 @@
 {
   "name": "autodevto",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A simple Node.js application to automatically generate and publish articles to your dev.to account.",
   "main": "index.js",
   "bin": {
