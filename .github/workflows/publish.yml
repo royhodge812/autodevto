@@ -25,11 +25,12 @@ jobs:
         with:
           node-version: 20 # Use a current LTS version
           registry-url: 'https://registry.npmjs.org'
-      
+
       - name: Install dependencies
         run: npm install
-
+      
+      # Corrected Step Indentation starts here
       - name: Publish to npm
         run: npm publish --access public
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
