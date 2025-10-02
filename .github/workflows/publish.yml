@@ -1,7 +1,5 @@
 name: NPM Publish
 
-# Triggers the workflow on a push to the main branch
-# only when the package.json version has been updated.
 on:
   push:
     branches:
@@ -22,30 +20,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Set up Node.js and configure the npm registry for OIDC authentication
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20 # Use a current LTS version
           registry-url: 'https://registry.npmjs.org'
-          # 'scope' is only needed if you're using a specific scope (e.g., @myorg)
-          # if your package is scoped, uncomment the line below:
-          # scope: '@your-scope-name'
       
       - name: Install dependencies
         run: npm install
 
-        # In your .github/workflows/publish.yml file
       - name: Publish to npm
-        # Add the access flag for the first public publish
         run: npm publish --access public
-
-      # --- Optional: Add your build/test steps here ---
-      # For example, if you need to compile JavaScript:
-      # - name: Build package
-      #   run: npm run build
-
-      - name: Publish to npm
-        # The 'npm publish' command is now token-less and authenticated 
-        # securely via the OIDC mechanism you set up on npm.
-        run: npm publish
