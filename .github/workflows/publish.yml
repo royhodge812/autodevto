@@ -33,7 +33,7 @@ jobs:
           # scope: '@your-scope-name'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # --- Optional: Add your build/test steps here ---
       # For example, if you need to compile JavaScript:
