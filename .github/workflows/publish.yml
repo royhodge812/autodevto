@@ -35,6 +35,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+        # In your .github/workflows/publish.yml file
+      - name: Publish to npm
+        # Add the access flag for the first public publish
+        run: npm publish --access public
+
       # --- Optional: Add your build/test steps here ---
       # For example, if you need to compile JavaScript:
       # - name: Build package
